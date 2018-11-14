@@ -32,4 +32,20 @@ sourceSets.main{
 ### 创建方法类（包名类名要和so里面的一致）
  在java中创建与上面jniUtil.java相同的包，并把jniUtil.java拷到次目录。
  
-        
+ 
+ ##备注
+ 
+### 3.配置动态连接库的名称,在mode的gradle->defaultConfig下增加以下代码
+   ndk {
+            moduleName "JNITest" //输出的SO文件名称
+            abiFilters "armeabi", "armeabi-v7a", "x86"//指定cpu的类型
+        }
+###  4.加载动态连接库,在编写native方法类中新增：
+   static
+    {
+        System.loadLibrary("native-lib");//名字注意，需要跟你的build.gradle ndk节点下面的名字一样
+    }
+### so库名Library
+ System.loadLibrary导入，如果build.gradle ndk没有配置，那么要和CMakeLists里面一样，Sets the name of the library后面的名字，否则出现导入库失败，查找不到该库
+    
+    
