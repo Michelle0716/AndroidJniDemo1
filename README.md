@@ -45,6 +45,22 @@ sourceSets.main{
     {
         System.loadLibrary("native-lib");//名字注意，需要跟你的build.gradle ndk节点下面的名字一样
     }
+    
+### gradle设置so库名
+
+####  defaultConfig {
+####        applicationId "com.ndk.****"
+####        minSdkVersion 19
+####        targetSdkVersion 26
+####        versionCode 1
+####        versionName "1.0"
+####       ndk {
+####            moduleName "LJPriject" //输出的SO文件名称
+####            abiFilters "armeabi-v7a","x86"//指定cpu的类型
+####        }
+####    }
+   
+    
 ### so库名Library
  System.loadLibrary导入，如果build.gradle ndk没有配置，那么要和CMakeLists里面一样，Sets the name of the library后面的名字，否则出现导入库失败，查找不到该库
     
